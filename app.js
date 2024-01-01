@@ -54,15 +54,19 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(mongoSanitize());
 
-app.use(session({
-  secret:'thisisasecret',
-   store: MongoStore.create({
-mongoUrl:dbUrl
-   }),
-   touchAfter: 24* 60 *60
-}));
+// app.use(session({
+//   secret:'thisisasecret',
+//    store: MongoStore.create({
+// mongoUrl:dbUrl
+//    })
+//    touchAfter: 24* 60 *60
+// }));
+const store = new MongoStore({
+  mongoUrl:dbUrl
+})
 
 const sessionConfig ={
+  store,
   name:'session',
   secret:'thisisasecret',
   resave:false,
