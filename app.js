@@ -21,7 +21,7 @@ const User = require('./models/user');
 const userRoute = require('./routes/users');
 const mongoSanitize = require('express-mongo-sanitize');
 const dbUrl = process.env.DB_URL;
-const MongoStore = require('connect-mongo').default;
+const MongoStore = require('connect-mongo');
 
 // try{
 // //mongoose.connect("mongodb+srv://sravan:<@cluster0.kz0elif.mongodb.net/?retryWrites=true&w=majority")
@@ -54,16 +54,17 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(mongoSanitize());
 
-const store = MongoStore.create({
+app.use(session({
+   store: MongoStore.create({
 mongoUrl:dbUrl,
 crypto:{
   secret:'thisisasecret'
 },
 touchAfter: 24* 60 *60
-});
+   })
+}));
 
 const sessionConfig ={
-  store,
   name:'session',
   secret:'thisisasecret',
   resave:false,
