@@ -57,9 +57,9 @@ app.use(mongoSanitize());
 app.use(session({
   secret:'thisisasecret',
    store: MongoStore.create({
-mongoUrl:dbUrl,
-touchAfter: 24* 60 *60
-   })
+mongoUrl:dbUrl
+   }),
+   touchAfter: 24* 60 *60
 }));
 
 const sessionConfig ={
