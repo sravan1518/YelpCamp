@@ -21,7 +21,7 @@ const User = require('./models/user');
 const userRoute = require('./routes/users');
 const mongoSanitize = require('express-mongo-sanitize');
 const dbUrl = process.env.DB_URL;
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo').default;
 
 // try{
 // //mongoose.connect("mongodb+srv://sravan:<@cluster0.kz0elif.mongodb.net/?retryWrites=true&w=majority")
@@ -63,6 +63,7 @@ touchAfter: 24* 60 *60
 });
 
 const sessionConfig ={
+  store,
   name:'session',
   secret:'thisisasecret',
   resave:false,
