@@ -55,11 +55,9 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(mongoSanitize());
 
 app.use(session({
+  secret:'thisisasecret',
    store: MongoStore.create({
 mongoUrl:dbUrl,
-crypto:{
-  secret:'thisisasecret'
-},
 touchAfter: 24* 60 *60
    })
 }));
