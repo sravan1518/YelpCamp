@@ -24,7 +24,7 @@ const dbUrl = process.env.DB_URL;
 const MongoStore = require('connect-mongo');
 
 // try{
-// //mongoose.connect("mongodb+srv://sravan:<@cluster0.kz0elif.mongodb.net/?retryWrites=true&w=majority")
+// //mongoose.connect("mongodb+srv://username:pass<@cluster0.kz0elif.mongodb.net/?retryWrites=true&w=majority")
 // // .then(()=>console.log("connection is established"))
 // }catch(error){n
 // console.log("error":error)
